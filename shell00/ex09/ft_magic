@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Script to find files with extension ">42" and containing "42" at the 42nd byte
+
+# Define the search directory, default to current directory
+SEARCH_DIR=${1:-.}
+
+# Find all files with extension ">42" in the search directory
+find "$SEARCH_DIR" -type f -name "*.42" | while read -r file; do
+  # Check if the 42nd byte (41st index) is "42"
+  if [ "$(xxd -p -s 41 -l 2 "$file" 2>/dev/null)" == "3432" ]; then
+    echo "42 file: $file"
+  fi
+done
