@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghoyaux <ghoyaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 20:25:40 by ghoyaux           #+#    #+#             */
-/*   Updated: 2024/08/11 21:54:35 by ghoyaux          ###   ########.fr       */
+/*   Created: 2024/08/11 16:21:46 by ghoyaux           #+#    #+#             */
+/*   Updated: 2024/08/11 17:07:31 by ghoyaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-int	*ft_range(int min, int max)
+int	string_length(const char *str)
 {
-	int	*array;
-	int	size;
-	int	i;
-	int	j;
+	int	length;
 
-	j = min;
-	i = 0;
-	size = (max - min);
-	if (!(min >= max))
+	length = 0;
+	while (str[length] != '\0')
 	{
-		array = (int *)malloc((size + 1) * sizeof(int));
-		while (i < size)
-		{
-			array[i] = j;
-			i++;
-			j++;
-		}
+		length++;
 	}
-	else
+	return (length);
+}
+
+int	main(int argc, char *argv[])
+{
+	int	length;
+	int	i;
+
+	i = argc - 1;
+	while (i > 0)
 	{
-		array = NULL;
+		length = string_length(argv[i]);
+		write(1, argv[i], length);
+		write(1, "\n", 1);
+		i--;
 	}
-	return (array);
+	return (0);
 }

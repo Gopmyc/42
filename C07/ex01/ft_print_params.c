@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
+/*   ft_print_params.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghoyaux <ghoyaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 21:34:59 by ghoyaux           #+#    #+#             */
-/*   Updated: 2024/08/11 22:00:01 by ghoyaux          ###   ########.fr       */
+/*   Created: 2024/08/11 16:14:36 by ghoyaux           #+#    #+#             */
+/*   Updated: 2024/08/11 16:18:16 by ghoyaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-int	ft_ultimate_range(int **range, int min, int max)
+int	string_length(const char *str)
 {
-	int	size;
+	int	length;
+
+	length = 0;
+	while (str[length] != '\0')
+	{
+		length++;
+	}
+	return (length);
+}
+
+int	main(int argc, char *argv[])
+{
+	int	length;
 	int	i;
 
-	if (min >= max)
+	i = 1;
+	while (i < argc)
 	{
-		*range = NULL;
-		return (0);
-	}
-	size = max - min;
-	*range = (int *)malloc(size * sizeof(int));
-	if (*range == NULL)
-	{
-		return (-1);
-	}
-	i = 0;
-	while (i < size)
-	{
-		(*range)[i] = min + i;
+		length = string_length(argv[i]);
+		write(1, argv[i], length);
+		write(1, "\n", 1);
 		i++;
 	}
-	return (size);
+	return (0);
 }

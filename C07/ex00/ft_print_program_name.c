@@ -1,43 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_print_program_name.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghoyaux <ghoyaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 18:19:47 by ghoyaux           #+#    #+#             */
-/*   Updated: 2024/08/11 21:54:39 by ghoyaux          ###   ########.fr       */
+/*   Created: 2024/08/11 15:07:29 by ghoyaux           #+#    #+#             */
+/*   Updated: 2024/08/11 16:08:57 by ghoyaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-int	size_array(const char *array)
+int	string_length(const char *str)
 {
-	int	i;
+	int	length;
 
-	i = 0;
-	while (array[i])
+	length = 0;
+	while (str[length] != '\0')
 	{
-		i++;
+		length++;
 	}
-	return (i);
+	return (length);
 }
 
-char	*ft_strdup(char *src)
+int	main(int argc, char *argv[])
 {
-	int		length;
-	char	*array;
-	int		i;
+	int	length;
 
-	i = 0;
-	length = size_array(src);
-	array = (char *)malloc((length + 1) * sizeof(int));
-	while (i < length)
+	if (argc > 0 && argv[0] != NULL)
 	{
-		array[i] = src[i];
-		i++;
+		length = string_length(argv[0]);
+		if (length > 0)
+			write(1, argv[0], length);
 	}
-	array[i] = '\0';
-	return (array);
+	write(1, "\n", 1);
+	return (0);
 }
