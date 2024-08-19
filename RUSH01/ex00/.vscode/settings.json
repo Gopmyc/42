@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"sstream": "c",
+		"unistd.h": "c",
+		"rush01.h": "c",
+		"array": "c",
+		"__tuple": "c"
+	}
+}
