@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"bsq.h": "c",
+		"array": "c",
+		"__tuple": "c"
+	}
+}
